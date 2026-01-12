@@ -7,6 +7,7 @@ import { InterviewProvider } from "@/contexts/InterviewContext";
 import Index from "./pages/Index";
 import InterviewerDashboard from "./pages/InterviewerDashboard";
 import MyBookings from "./pages/MyBookings";
+import CalendarPage from "./pages/CalendarPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/interviewer" element={<InterviewerDashboard />} />
             <Route path="/my-bookings" element={<MyBookings />} />
+            <Route path="/calendar" element={<CalendarPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

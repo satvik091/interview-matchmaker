@@ -1,11 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Calendar, Users, Settings, Clock } from 'lucide-react';
+import { Calendar, Users, Clock, CalendarDays } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '/', label: 'Candidate Booking', icon: Calendar },
   { href: '/interviewer', label: 'Interviewer Dashboard', icon: Users },
   { href: '/my-bookings', label: 'My Bookings', icon: Clock },
+  { href: '/calendar', label: 'Calendar', icon: CalendarDays },
 ];
 
 export function Header() {
