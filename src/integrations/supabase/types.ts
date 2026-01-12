@@ -14,13 +14,171 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          candidate_email: string
+          candidate_id: string
+          candidate_name: string
+          created_at: string
+          id: string
+          slot_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          candidate_email: string
+          candidate_id: string
+          candidate_name: string
+          created_at?: string
+          id?: string
+          slot_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          candidate_email?: string
+          candidate_id?: string
+          candidate_name?: string
+          created_at?: string
+          id?: string
+          slot_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_slot_id_fkey"
+            columns: ["slot_id"]
+            isOneToOne: false
+            referencedRelation: "interview_slots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interview_slots: {
+        Row: {
+          created_at: string
+          date: string
+          end_time: string
+          id: string
+          interviewer_id: string
+          is_booked: boolean
+          start_time: string
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          end_time: string
+          id?: string
+          interviewer_id: string
+          is_booked?: boolean
+          start_time: string
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          end_time?: string
+          id?: string
+          interviewer_id?: string
+          is_booked?: boolean
+          start_time?: string
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "interview_slots_interviewer_id_fkey"
+            columns: ["interviewer_id"]
+            isOneToOne: false
+            referencedRelation: "interviewer_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      interviewer_profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          max_interviews_per_week: number
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          max_interviews_per_week?: number
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          max_interviews_per_week?: number
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      weekly_availability: {
+        Row: {
+          created_at: string
+          day_of_week: number
+          end_time: string
+          id: string
+          interviewer_id: string
+          start_time: string
+        }
+        Insert: {
+          created_at?: string
+          day_of_week: number
+          end_time: string
+          id?: string
+          interviewer_id: string
+          start_time: string
+        }
+        Update: {
+          created_at?: string
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          interviewer_id?: string
+          start_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "weekly_availability_interviewer_id_fkey"
+            columns: ["interviewer_id"]
+            isOneToOne: false
+            referencedRelation: "interviewer_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      book_slot: {
+        Args: {
+          p_candidate_email: string
+          p_candidate_id: string
+          p_candidate_name: string
+          p_expected_version: number
+          p_slot_id: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
